@@ -7,6 +7,29 @@ const WA_NUMBER = '56942744145'; // +56 9 4274 4145 (Facebook de Los Olivos)
 const waLink = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 const clp = (n) => '$' + Math.round(n).toLocaleString('es-CL');
 
+/* ---------- Pixel de Meta (Facebook / Instagram Ads) ----------
+   Pega aquí el ID del pixel (Administrador de eventos de Meta → Orígenes de datos).
+   Mientras esté vacío no se carga nada. */
+const META_PIXEL_ID = '';
+if (META_PIXEL_ID) {
+  !function (f, b, e, v, n, t, s) { if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); }; if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s); }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+}
+const track = (event, params = {}) => {
+  if (window.fbq) fbq('track', event, params);
+  if (window.gtag) gtag('event', event === 'Contact' ? 'contact_whatsapp' : event === 'Lead' ? 'generate_lead' : event.toLowerCase(), params);
+};
+// Cada clic en un botón de WhatsApp cuenta como "Contact" (sirve para optimizar campañas)
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href*="wa.me/"]');
+  if (a && !a.dataset.share) track('Contact', { content_name: (a.textContent || 'WhatsApp').trim().slice(0, 60) });
+});
+// Ficha de lote: "ViewContent" con el número de lote
+if (document.querySelector('[data-ficha]')) {
+  track('ViewContent', { content_type: 'product', content_ids: ['lote-' + (new URLSearchParams(location.search).get('lote') || '8')] });
+}
+
 /* ---------- Ilustraciones de paisaje (reemplazar por fotos/drone reales) ---------- */
 function rng(seed) { let s = seed * 9301 + 49297; return () => ((s = (s * 9301 + 49297) % 233280) / 233280); }
 const PALETTES = [
@@ -107,7 +130,7 @@ document.querySelectorAll('form[data-lead]').forEach((form) => {
     const d = Object.fromEntries(new FormData(form));
     const msg = `Hola! Soy ${d.nombre || ''}. ${d.interes ? 'Me interesa: ' + d.interes + '. ' : ''}${d.mensaje || ''} Mi teléfono: ${d.telefono || ''}`;
     // En producción: enviar a CRM / correo (Formspree, HubSpot, etc.) + evento de conversión GA4 "generate_lead"
-    if (window.gtag) gtag('event', 'generate_lead', { method: 'formulario_web' });
+    track('Lead', { content_name: d.interes || 'formulario_web' });
     form.closest('.form').classList.add('is-sent');
     setTimeout(() => window.open(waLink(msg), '_blank', 'noopener'), 600);
   });

@@ -47,6 +47,14 @@ Para búsquedas locales como "parcelas San Nicolás", Google muestra primero el 
 - Registrar el dominio en [Google Search Console](https://search.google.com/search-console) y enviar el `sitemap.xml`.
 - Instalar Google Analytics 4 (en `index.html` está marcado dónde pegarlo) y medir clics en WhatsApp como conversión.
 
+### Pixel de Meta (para Facebook e Instagram Ads)
+El pixel ya está instalado y solo falta el ID:
+1. En [Meta Business Suite](https://business.facebook.com) → **Administrador de eventos** → **Conectar orígenes de datos** → **Web**, crear el pixel y copiar el número (por ejemplo `123456789012345`).
+2. Pegarlo en `js/main.js`, en la línea `const META_PIXEL_ID = '';`. Desde ese momento funciona en todas las páginas.
+
+Eventos que manda la web: **PageView** (cada visita), **Contact** (cada clic en un botón de WhatsApp), **Lead** (formulario de contacto) y **ViewContent** (ficha de un lote). En las campañas, optimizar por **Contact** o crear públicos de remarketing con quienes visitaron la web en los últimos 30 a 90 días.
+Para probarlo, usar la extensión **Meta Pixel Helper** de Chrome o la pestaña "Probar eventos" del Administrador de eventos.
+
 ### 3. Portales inmobiliarios (enlaces hacia la web y más visibilidad)
 Publicar cada lote en Portal Inmobiliario, Yapo, TocToc, Chilepropiedades y Marketplace de Facebook, **siempre con el link a la web**.
 
