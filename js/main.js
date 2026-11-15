@@ -30,39 +30,36 @@ if (document.querySelector('[data-ficha]')) {
   track('ViewContent', { content_type: 'product', content_ids: ['lote-' + (new URLSearchParams(location.search).get('lote') || '8')] });
 }
 
-/* ---------- Ilustraciones de paisaje (reemplazar por fotos/drone reales) ---------- */
-function rng(seed) { let s = seed * 9301 + 49297; return () => ((s = (s * 9301 + 49297) % 233280) / 233280); }
-const PALETTES = [
-  { sky: ['#f6d9a8', '#f3b783'], far: '#9aa7b8', hill: ['#8fa25a', '#6f8443', '#4f6236'] }, // atardecer
-  { sky: ['#cfe3ef', '#f3ecd9'], far: '#8ea0b4', hill: ['#a3b36a', '#7b9150', '#566a3a'] }, // mañana
-  { sky: ['#e9d8c0', '#d7b48c'], far: '#a59a9e', hill: ['#b6a76a', '#8c8a4c', '#5f6a37'] }, // verano seco
-  { sky: ['#bcd4e6', '#e6eef0'], far: '#7d91a8', hill: ['#93ac63', '#6c8a45', '#46602f'] }, // primavera
-];
-function landscape(seed = 1, { trees = true, plot = false, label = '' } = {}) {
-  const r = rng(seed), p = PALETTES[seed % PALETTES.length], id = 'g' + seed + Math.floor(r() * 1e6);
-  const mt = () => { let d = 'M0 230 '; for (let x = 0; x <= 800; x += 40) d += `L${x} ${150 + r() * 50 - (x > 300 && x < 460 ? 40 : 0)} `; return d + 'L800 400 L0 400Z'; };
-  const hill = (y, amp) => { const a = r() * 6; let d = `M0 ${y} `; for (let x = 0; x <= 800; x += 20) d += `L${x} ${y + Math.sin(x / 120 + a) * amp + Math.sin(x / 47 + a) * amp * .3} `; return d + 'L800 450 L0 450Z'; };
-  let olives = '';
-  if (trees) for (let row = 0; row < 4; row++) for (let i = 0; i < 14; i++) {
-    const y = 330 + row * 28, x = (i * 62 + row * 24 + r() * 14) % 820, s = 7 + row * 3 + r() * 2;
-    olives += `<ellipse cx="${x}" cy="${y + s}" rx="${s * 1.1}" ry="${s * .3}" fill="rgba(0,0,0,.15)"/><rect x="${x - 1}" y="${y}" width="2.4" height="${s}" fill="#4a3b2a"/><circle cx="${x}" cy="${y - s * .3}" r="${s}" fill="${row % 2 ? '#56693a' : '#647a43'}"/><circle cx="${x - s * .4}" cy="${y - s * .6}" r="${s * .55}" fill="#7a9152" opacity=".8"/>`;
-  }
-  const plotLines = plot ? `<g stroke="#fffdf8" stroke-width="2" stroke-dasharray="6 6" opacity=".85" fill="rgba(255,253,248,.12)"><path d="M210 330 L560 318 L640 420 L150 440Z"/></g><g fill="#c2643a"><circle cx="210" cy="330" r="5"/><circle cx="560" cy="318" r="5"/><circle cx="640" cy="420" r="5"/><circle cx="150" cy="440" r="5"/></g>` : '';
-  const lab = label ? `<g><rect x="24" y="24" rx="14" width="${label.length * 11 + 36}" height="40" fill="rgba(29,38,20,.65)"/><text x="42" y="50" font-family="Manrope,sans-serif" font-weight="700" font-size="17" fill="#fff">${label}</text></g>` : '';
-  return `<svg viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de parcela con olivos y cordillera en San Nicolás, Ñuble">
-  <defs><linearGradient id="${id}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${p.sky[0]}"/><stop offset="1" stop-color="${p.sky[1]}"/></linearGradient></defs>
-  <rect width="800" height="450" fill="url(#${id}s)"/>
-  <circle cx="${560 + r() * 160}" cy="${80 + r() * 40}" r="34" fill="#fff6dc" opacity=".85"/>
-  <path d="${mt()}" fill="${p.far}" opacity=".75"/>
-  <path d="M330 175 L380 110 L430 172Z" fill="#fff" opacity=".85"/>
-  <path d="${hill(250, 14)}" fill="${p.hill[0]}"/>
-  <path d="${hill(290, 18)}" fill="${p.hill[1]}"/>
-  <path d="${hill(340, 10)}" fill="${p.hill[2]}"/>
-  ${olives}${plotLines}${lab}
-</svg>`;
+/* ---------- Fotos reales del proyecto (img/) ---------- */
+const IMG_BASE = (document.currentScript && document.currentScript.src.replace(/js\/main\.js.*$/, 'img/')) || 'img/';
+const PHOTOS = {
+  'vista-aerea-lotes-1': 'Vista aérea de las parcelas Los Olivos en San Nicolás, Ñuble',
+  'vista-aerea-lotes-2': 'Vista aérea de los lotes y caminos interiores del loteo Los Olivos',
+  'vista-aerea-lotes-3': 'Camino interior entre parcelas de 5.000 m² visto desde el aire',
+  'vista-aerea-lotes-4': 'Parcelas con árboles y vista a los cerros en San Nicolás',
+  'vista-aerea-lotes-5': 'Lotes de 5.000 m² en el sector Las Lajuelas, San Nicolás',
+  'vista-aerea-lotes-6': 'Vista aérea de parcelas con bosque en la Región de Ñuble',
+  'vista-aerea-lotes-7': 'Loteo Parcelas Los Olivos visto con dron',
+  'vista-aerea-lotes-8': 'Parcelas rurales en San Nicolás con vista a la cordillera',
+  'camino-acceso-loteo': 'Camino de acceso al loteo Parcelas Los Olivos',
+  'camino-interior-parcelas': 'Camino interior de las parcelas con vista a la cordillera',
+  'vista-nevados-de-chillan': 'Vista a los Nevados de Chillán desde las parcelas',
+  'porton-acceso-los-olivos': 'Portón de acceso a Parcelas Los Olivos',
+  'caballos-campo-nuble': 'Caballos en el campo de San Nicolás, Ñuble',
+  'parcela-con-casa-san-nicolas': 'Parcela con casa de campo en San Nicolás',
+  'entrada-parcelas-los-olivos': 'Entrada al loteo Parcelas Los Olivos',
+  'acceso-parcelas-los-olivos': 'Acceso a Parcelas Los Olivos en el sector Las Lajuelas',
+};
+// Foto elegida para cada imagen del sitio (según su número data-art)
+const ART_PHOTO = { 9: 'vista-aerea-lotes-7', 11: 'vista-aerea-lotes-2', 6: 'camino-acceso-loteo', 16: 'vista-nevados-de-chillan', 21: 'porton-acceso-los-olivos', 14: 'caballos-campo-nuble', 7: 'parcela-con-casa-san-nicolas', 18: 'vista-aerea-lotes-8' };
+const ROTATION = ['vista-aerea-lotes-1', 'vista-aerea-lotes-2', 'vista-aerea-lotes-3', 'vista-aerea-lotes-4', 'vista-aerea-lotes-5', 'vista-aerea-lotes-6', 'vista-aerea-lotes-7', 'vista-aerea-lotes-8', 'camino-interior-parcelas', 'entrada-parcelas-los-olivos'];
+function landscape(seed = 1, { label = '' } = {}) {
+  const key = ART_PHOTO[seed] || ROTATION[seed % ROTATION.length];
+  const lab = label ? `<span class="photo-label">${label}</span>` : '';
+  return `<img src="${IMG_BASE}${key}.jpg" alt="${PHOTOS[key]}" loading="lazy" decoding="async" width="1280" height="853">${lab}`;
 }
 document.querySelectorAll('[data-art]').forEach((el) => {
-  el.insertAdjacentHTML('afterbegin', landscape(+el.dataset.art, { trees: el.dataset.trees !== 'no', plot: 'plot' in el.dataset, label: el.dataset.label || '' }));
+  el.insertAdjacentHTML('afterbegin', landscape(+el.dataset.art, { label: el.dataset.label || '' }));
 });
 
 /* ---------- Header ---------- */

@@ -121,42 +121,12 @@
 
   <!-- ================= HERO ================= -->
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__art" aria-hidden="true">
-      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e7b47a"/><stop offset=".45" stop-color="#f1c896"/><stop offset="1" stop-color="#f6e2bd"/></linearGradient>
-          <linearGradient id="mt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f8fa6"/><stop offset="1" stop-color="#b3a9a8"/></linearGradient>
-          <radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff7df"/><stop offset=".4" stop-color="#ffe7b3" stop-opacity=".9"/><stop offset="1" stop-color="#ffd38a" stop-opacity="0"/></radialGradient>
-          <pattern id="rows" width="34" height="18" patternUnits="userSpaceOnUse" patternTransform="skewX(-35)"><circle cx="8" cy="9" r="7" fill="#4c5f33"/><circle cx="6" cy="7" r="3.5" fill="#6a8044" opacity=".8"/></pattern>
-        </defs>
-        <rect width="1600" height="900" fill="url(#sky)"/>
-        <circle cx="1120" cy="300" r="260" fill="url(#sun)"/>
-        <circle cx="1120" cy="300" r="62" fill="#fff6dc"/>
-        <g class="cloud" opacity=".6"><ellipse cx="200" cy="140" rx="120" ry="18" fill="#fff"/><ellipse cx="260" cy="128" rx="70" ry="16" fill="#fff"/></g>
-        <g class="cloud cloud--2" opacity=".45"><ellipse cx="400" cy="210" rx="160" ry="14" fill="#fff"/></g>
-        <!-- Cordillera de los Andes con volcán (vista hacia el oriente) -->
-        <path d="M0 470 L90 420 L170 445 L260 380 L340 420 L430 350 L520 400 L610 330 L700 300 L760 255 L820 300 L900 350 L990 320 L1080 370 L1170 340 L1260 390 L1350 360 L1440 400 L1530 375 L1600 400 L1600 600 L0 600Z" fill="url(#mt)" opacity=".85"/>
-        <path d="M700 300 L760 255 L820 300 L800 296 L785 310 L765 292 L745 312 L725 298Z" fill="#fff" opacity=".95"/>
-        <path d="M430 350 L470 330 L500 345 L480 352 L462 342Z M610 330 L640 318 L660 334 L640 336Z M1170 340 L1200 328 L1225 345 L1200 342Z" fill="#fff" opacity=".8"/>
-        <!-- Lomas -->
-        <path d="M0 520 C200 470 380 500 560 480 C760 458 900 500 1100 478 C1300 456 1450 490 1600 470 L1600 900 L0 900Z" fill="#9aa860"/>
-        <path d="M0 580 C240 540 420 575 640 555 C860 535 1040 575 1260 552 C1420 536 1520 560 1600 550 L1600 900 L0 900Z" fill="#7d9149"/>
-        <!-- Hileras de olivos -->
-        <path d="M0 620 C300 590 600 615 900 600 C1200 585 1400 610 1600 598 L1600 760 L0 760Z" fill="url(#rows)" opacity=".9"/>
-        <path d="M0 680 C320 650 640 680 960 664 C1240 650 1440 672 1600 662 L1600 900 L0 900Z" fill="#5d7238"/>
-        <!-- Deslinde de una parcela (5.000 m²) -->
-        <g stroke="#fffdf8" stroke-width="3" stroke-dasharray="10 10" fill="rgba(255,253,248,.10)">
-          <path d="M880 640 L1260 625 L1360 760 L820 790Z"/>
-        </g>
-        <g fill="#c2643a" stroke="#fffdf8" stroke-width="3"><circle cx="880" cy="640" r="8"/><circle cx="1260" cy="625" r="8"/><circle cx="1360" cy="760" r="8"/><circle cx="820" cy="790" r="8"/></g>
-        <g transform="translate(1020 690)"><rect x="-70" y="-22" width="160" height="40" rx="20" fill="rgba(29,38,20,.75)"/><text x="10" y="5" text-anchor="middle" font-family="Manrope,sans-serif" font-size="18" font-weight="700" fill="#fff">5.000 m²</text></g>
-        <!-- Olivos en primer plano -->
-        <g>
-          <rect x="140" y="700" width="10" height="90" fill="#4a3b2a"/><circle cx="145" cy="690" r="58" fill="#4f6236"/><circle cx="118" cy="672" r="34" fill="#6b7f45"/><circle cx="170" cy="660" r="30" fill="#7c9152"/>
-          <rect x="1490" y="720" width="9" height="80" fill="#4a3b2a"/><circle cx="1494" cy="708" r="50" fill="#4f6236"/><circle cx="1470" cy="690" r="28" fill="#6b7f45"/>
-        </g>
-      </svg>
-    </div>
+    <div class="hero__art">
+      <picture>
+        <source media="(max-width: 700px)" srcset="img/parcelas-san-nicolas-vista-volcan-movil.jpg">
+        <img src="img/parcelas-san-nicolas-vista-volcan.jpg" alt="Parcelas en San Nicolás con vista a los Nevados de Chillán" width="1920" height="1280" fetchpriority="high" decoding="async">
+      </picture>
+   </div>
     <div class="container hero__content">
       <div class="badge-live"><i></i> Últimos lotes disponibles · Etapa 1</div>
       <h1 id="hero-title">Parcelas en San Nicolás, <em>tu campo en Ñuble</em></h1>
@@ -204,6 +174,27 @@
           <li><span><b>Plusvalía:</b> Ñuble es la región más joven de Chile y sigue creciendo.</span></li>
         </ul>
         <a class="btn btn--olive" href="parcelas.html">Conoce todas las parcelas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALERÍA ================= -->
+  <section class="section section--tight" id="galeria" aria-labelledby="galeria-title">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Galería</span>
+        <h2 id="galeria-title">Así es Los Olivos</h2>
+        <p class="lead">Fotos reales del loteo en el sector Las Lajuelas, San Nicolás.</p>
+      </div>
+      <div class="photo-grid">
+        <figure class="photo-grid__big"><img src="img/vista-aerea-lotes-7.jpg" alt="Loteo Parcelas Los Olivos visto con dron" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Vista aérea del loteo</figcaption></figure>
+        <figure><img src="img/porton-acceso-los-olivos.jpg" alt="Portón de acceso a Parcelas Los Olivos" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Portón de acceso</figcaption></figure>
+        <figure><img src="img/vista-nevados-de-chillan.jpg" alt="Vista a los Nevados de Chillán desde las parcelas" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Vista a los Nevados de Chillán</figcaption></figure>
+        <figure><img src="img/camino-interior-parcelas.jpg" alt="Camino interior de las parcelas con vista a la cordillera" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Caminos interiores</figcaption></figure>
+        <figure><img src="img/caballos-campo-nuble.jpg" alt="Caballos en el campo de San Nicolás, Ñuble" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Vida de campo</figcaption></figure>
+        <figure class="photo-grid__wide"><img src="img/vista-aerea-lotes-3.jpg" alt="Camino interior entre parcelas de 5.000 m² visto desde el aire" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Lotes de 5.000 m²</figcaption></figure>
+        <figure><img src="img/entrada-parcelas-los-olivos.jpg" alt="Entrada al loteo Parcelas Los Olivos" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Entrada al loteo</figcaption></figure>
+        <figure><img src="img/parcela-con-casa-san-nicolas.jpg" alt="Parcela con casa de campo en San Nicolás" loading="lazy" decoding="async" width="1280" height="853"><figcaption>Tu casa de campo</figcaption></figure>
       </div>
     </div>
   </section>

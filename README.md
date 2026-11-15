@@ -30,7 +30,7 @@ Estos datos son de ejemplo y **hay que confirmarlos con tu hermano**:
 - [ ] **Agua y luz**: qué tiene realmente cada lote (pozo, APR, factibilidad eléctrica).
 - [ ] **Rol propio y subdivisión según DL 3.516**: confirmar que sea así.
 - [ ] **Tiempos de viaje** de la sección Ubicación y la **coordenada GPS** real (en `index.html`, buscar `-36.4996`).
-- [ ] **Ilustraciones → fotos reales.** Las imágenes son dibujos generados con código. Hay que reemplazarlas por fotos y videos de dron (los reels de Facebook sirven). Las fotos en formato WebP, de menos de 200 KB y con texto alternativo descriptivo (por ejemplo: "Parcela de 5.000 m² con vista a la cordillera en San Nicolás").
+- [x] **Fotos reales.** Ya están las fotos profesionales del loteo (carpeta `img/`, sacadas del Drive "Nuevo Video y Fotos"). Para cambiar qué foto sale en cada parte, editar `ART_PHOTO` y `PHOTOS` al inicio de `js/main.js`. Pendiente: agregar el video oficial (`parcelas olivos - oficial.mp4`) subido a YouTube y fotos por lote cuando existan.
 - [ ] **Dominio**: el sitio usa `parcelaslosolivos.cl` de ejemplo. Revisar si está disponible en [nic.cl](https://www.nic.cl).
 - [ ] Links de Instagram, TikTok, YouTube y reseñas de Google en el footer.
 
