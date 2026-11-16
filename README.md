@@ -16,7 +16,7 @@ Es un sitio estático (HTML + CSS + JS, sin frameworks): carga muy rápido, que 
 | Artículo | `blog/vivir-en-san-nicolas-nuble.html` | vivir en San Nicolás Ñuble |
 | Artículo | `blog/agua-y-luz-en-parcelas.html` | agua y luz en parcelas |
 
-**Qué trae la página:** plano interactivo de los 24 lotes, simulador de cuotas, botón de WhatsApp en todas las páginas (con mensajes que ya dicen qué lote interesa), filtros de parcelas, preguntas frecuentes, mapa de ubicación, formulario de contacto y blog con índice y barra de lectura.
+**Qué trae la página:** galería de fotos reales, listado de los 24 lotes (sin precios por lote: se consultan por WhatsApp), simulador de cuotas (desde $10 MM, pie mínimo 80%), botón de WhatsApp en todas las páginas (con mensajes que ya dicen qué lote interesa), filtros de parcelas, preguntas frecuentes, mapa de ubicación, formulario de contacto y blog con índice y barra de lectura.
 
 **SEO técnico incluido:** títulos y descripciones pensados para cada búsqueda, datos estructurados para Google (negocio local, producto con precio, preguntas frecuentes, artículos, ruta de navegación, pasos de compra), etiquetas Open Graph para que se vea bien al compartir en WhatsApp y Facebook, `sitemap.xml`, `robots.txt`, HTML semántico, accesibilidad y ubicación geográfica.
 
